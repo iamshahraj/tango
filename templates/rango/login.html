@@ -1,0 +1,24 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+{% block title_block %}
+    Login
+{% endblock %}
+{% block body_block %}
+    <h1>Login to Rango</h1>
+    <form id="login_form" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        Username: <input type="text" name="username" value="" size="50" placeholder="Enter username" />
+        <br />
+        Password: <input type="password" name="password" value="" size="50" placeholder="Enter password"/> <br /><br />
+        <input type="submit" value="SignIn" />
+    </form><br />
+    <a href="{% url 'register' %}"><strong> Not registered?</strong></a> <br />
+    {% if form.non_field_errors %}
+        <ul class='form-errors'>
+            {% for error in form.non_field_errors %}
+                <err>{{ error }}</err>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
+ 
